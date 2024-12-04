@@ -1,0 +1,19 @@
+---
+import Menu from "@/components/Menu/Menu.astro";
+
+import "../styles/globals.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image" href="favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>La Gazette de la Loupiote</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>
