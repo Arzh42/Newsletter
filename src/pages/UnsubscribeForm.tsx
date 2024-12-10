@@ -1,9 +1,11 @@
-import { z } from "astro/zod";
 import { Button } from "@/components/ui/button";
 import { useCallback, useEffect, useState } from "react";
 
 export default function UnsubscribeForm() {
-  const [userEmail, setUserEmail] = useState<null | string>(null);
+  const [user, setUser] = useState<null | {
+    id: string;
+    listId: string;
+  }>(null);
 
   const [success, setSuccess] = useState(false);
 
@@ -11,19 +13,21 @@ export default function UnsubscribeForm() {
     if (globalThis.window) {
       const urlParams = new URLSearchParams(globalThis.window.location.search);
 
-      const userMail = urlParams.get("userMail");
+      const userMailId = urlParams.get("userId");
+      const listId = urlParams.get("listId");
 
-      setUserEmail(userMail);
+      if (listId && userMailId) {
+        setUser({ id: userMailId, listId });
+      }
     }
   }, []);
 
   const unsubscribe = useCallback(async () => {
-    const result = z.string().email().safeParse(userEmail);
-    if (result.success) {
+    if (user) {
       const response = await fetch(
         `${import.meta.env.PUBLIC_STOATI_URL}/shops/${
           import.meta.env.PUBLIC_STOATI_ID
-        }/newsletters/list/01ec4056-d07b-4e57-868e-50880a9c6f85/email/${result.data}`,
+        }/newsletters/list/${user.listId}/email/${user.id}`,
         {
           method: "delete",
           headers: {
@@ -37,7 +41,7 @@ export default function UnsubscribeForm() {
         setSuccess(true);
       }
     }
-  }, [userEmail]);
+  }, [user]);
 
   if (success) {
     return (
@@ -50,7 +54,7 @@ export default function UnsubscribeForm() {
   return (
     <div>
       <h2>Souhaitez-vous vous désabonner de notre newsletter ?</h2>
-      <Button onClick={() => unsubscribe()}>Se désinscrire</Button>
+      {user && <Button onClick={() => unsubscribe()}>Se désinscrire</Button>}
     </div>
   );
 }
