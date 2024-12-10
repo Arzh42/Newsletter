@@ -1,14 +1,18 @@
 ---
 import ContactForm from "@/pages/ContactForm";
 import Layout from "@/layouts/Layout.astro";
+
 import "../styles/globals.css";
 ---
 
+<script>
+  import("altcha");
+</script>
 <Layout
   ><main
     class="flex flex-col justify-center items-center flex-1 px-2 w-screen h-screen"
   >
     <h1 class="text-xl font-semibold pb-4">Gazette de la Loupiotte</h1>
-    <ContactForm client:visible />
+    <ContactForm client:load />
   </main></Layout
 >

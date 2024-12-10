@@ -41,6 +41,7 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
           current.removeEventListener("statechange", handleStateChange);
       }
     }, [onValueChange]);
+    console.log(import.meta.env.PUBLIC_STOATI_URL + "/challenges");
 
     /* Configure your `challengeurl` and remove the `test` attribute, see docs: https://altcha.org/docs/website-integration/#using-altcha-widget  */
     return (
@@ -49,7 +50,9 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
         style={{
           "--altcha-max-width": "100%",
         }}
-        challengeurl={import.meta.env.PUBLIC_STOATI_URL + "challenges"}
+        debug
+        test
+        challengeurl={import.meta.env.PUBLIC_STOATI_URL + "/challenges"}
       ></altcha-widget>
     );
   }

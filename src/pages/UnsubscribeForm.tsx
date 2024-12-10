@@ -23,7 +23,7 @@ export default function UnsubscribeForm() {
       const response = await fetch(
         `${import.meta.env.PUBLIC_STOATI_URL}/shops/${
           import.meta.env.PUBLIC_STOATI_ID
-        }/newsletters/unsubscribe/${result.data}`,
+        }/newsletters/list/01ec4056-d07b-4e57-868e-50880a9c6f85/email/${result.data}`,
         {
           method: "delete",
           headers: {
