@@ -52,7 +52,7 @@ export default function UnsubscribeForm() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
       <h2>Souhaitez-vous vous désabonner de notre newsletter ?</h2>
       {user && <Button onClick={() => unsubscribe()}>Se désinscrire</Button>}
     </div>
