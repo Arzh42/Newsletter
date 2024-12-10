@@ -1,0 +1,14 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import "../styles/globals.css";
+import UnsubscribeForm from "@/pages/UnsubscribeForm";
+---
+
+<Layout
+  ><main
+    class="flex flex-col justify-center items-center flex-1 px-2 w-screen h-screen"
+  >
+    <h1 class="text-xl font-semibold pb-4">Gazette de la Loupiotte</h1>
+    <UnsubscribeForm client:visible />
+  </main></Layout
+>
