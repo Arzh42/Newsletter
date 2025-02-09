@@ -33,7 +33,7 @@ export default function ContactForm() {
     const response = await fetch(
       `${import.meta.env.PUBLIC_STOATI_URL}/shops/${
         import.meta.env.PUBLIC_STOATI_ID
-      }/newsletters/list/01ec4056-d07b-4e57-868e-50880a9c6f85/subscribe`,
+      }/newsletters/list/7663d03a-5c8c-4548-9e7e-afb1283988c4/subscribe`,
       {
         method: "POST",
         headers: {
