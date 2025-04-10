@@ -37,7 +37,7 @@ export default function ContactForm({
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const response = await fetch(
-      `${apiUrl}/applications/${applicationId}/newsletters/list/93f7fbf8-e641-43f0-a0fb-6fc5e50bc845/subscribe`,
+      `${apiUrl}/applications/${applicationId}/newsletters/lists/93f7fbf8-e641-43f0-a0fb-6fc5e50bc845/subscribe`,
       {
         method: "POST",
         headers: {

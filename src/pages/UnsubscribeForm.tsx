@@ -27,7 +27,7 @@ export default function UnsubscribeForm() {
       const response = await fetch(
         `${import.meta.env.PUBLIC_STOATI_URL}/applications/${
           import.meta.env.PUBLIC_STOATI_ID
-        }/newsletters/list/${user.listId}/email/${user.id}`,
+        }/newsletters/lists/${user.listId}/email/${user.id}`,
         {
           method: "delete",
           headers: {
