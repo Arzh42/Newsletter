@@ -1,5 +1,21 @@
 ---
+import { getAttributeDataBySlugAsset } from "@stoati/tools";
 import "../styles/globals.css";
+import { getAttributeDataBySlugText } from "@stoati/tools";
+import { initStoati } from "@stoati/tools";
+import { PUBLIC_STOATI_ID } from "astro:env/client";
+import { PUBLIC_STOATI_URL } from "astro:env/client";
+initStoati({
+  applicationId: PUBLIC_STOATI_ID,
+  apiUrl: PUBLIC_STOATI_URL,
+});
+const title = await getAttributeDataBySlugText(
+  "basic-site-configuration.site_config_title"
+);
+
+const favicon = await getAttributeDataBySlugAsset(
+  "basic-site-configuration.site_config_favicon"
+);
 ---
 
 <!doctype html>
@@ -7,9 +23,9 @@ import "../styles/globals.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image" href="favicon.svg" />
+    <link rel="icon" type="image" href={favicon.url} />
     <meta name="generator" content={Astro.generator} />
-    <title>La Gazette de la Loupiote</title>
+    <title>{title}</title>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />

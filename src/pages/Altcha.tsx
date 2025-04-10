@@ -1,5 +1,6 @@
 //@ts-nocheck
 
+import { PUBLIC_STOATI_URL } from "astro:env/client";
 import {
   useEffect,
   useRef,
@@ -7,7 +8,6 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-
 interface AltchaProps {
   onValueChange: (val: null | string) => void;
 }
@@ -17,13 +17,17 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
     const widgetRef = useRef<HTMLElement>(null);
     const [value, setValue] = useState<string | null>(null);
 
-    useImperativeHandle(ref, () => {
-      return {
-        get value() {
-          return value;
-        },
-      };
-    }, [value]);
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          get value() {
+            return value;
+          },
+        };
+      },
+      [value]
+    );
 
     useEffect(() => {
       const handleStateChange = (ev: Event | CustomEvent) => {
@@ -41,7 +45,6 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
           current.removeEventListener("statechange", handleStateChange);
       }
     }, [onValueChange]);
-    console.log(import.meta.env.PUBLIC_STOATI_URL + "/challenges");
 
     /* Configure your `challengeurl` and remove the `test` attribute, see docs: https://altcha.org/docs/website-integration/#using-altcha-widget  */
     return (
@@ -52,7 +55,7 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
         }}
         debug
         test
-        challengeurl={import.meta.env.PUBLIC_STOATI_URL + "/challenges"}
+        challengeurl={PUBLIC_STOATI_URL + "/challenges"}
       ></altcha-widget>
     );
   }

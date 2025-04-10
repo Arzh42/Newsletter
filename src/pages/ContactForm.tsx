@@ -1,7 +1,7 @@
 import { useForm, useWatch } from "react-hook-form";
 import Altcha from "./Altcha";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "astro/zod";
+import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -19,7 +19,13 @@ const FormSchema = z.object({
   challenge: z.any(),
 });
 
-export default function ContactForm() {
+export default function ContactForm({
+  apiUrl,
+  applicationId,
+}: {
+  apiUrl: string;
+  applicationId: string;
+}) {
   const [messageSent, setMessageSent] = useState(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -31,9 +37,7 @@ export default function ContactForm() {
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const response = await fetch(
-      `${import.meta.env.PUBLIC_STOATI_URL}/shops/${
-        import.meta.env.PUBLIC_STOATI_ID
-      }/newsletters/list/7663d03a-5c8c-4548-9e7e-afb1283988c4/subscribe`,
+      `${apiUrl}/applications/${applicationId}/newsletters/list/93f7fbf8-e641-43f0-a0fb-6fc5e50bc845/subscribe`,
       {
         method: "POST",
         headers: {

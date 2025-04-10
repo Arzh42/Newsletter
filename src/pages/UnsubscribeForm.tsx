@@ -25,7 +25,7 @@ export default function UnsubscribeForm() {
   const unsubscribe = useCallback(async () => {
     if (user) {
       const response = await fetch(
-        `${import.meta.env.PUBLIC_STOATI_URL}/shops/${
+        `${import.meta.env.PUBLIC_STOATI_URL}/applications/${
           import.meta.env.PUBLIC_STOATI_ID
         }/newsletters/list/${user.listId}/email/${user.id}`,
         {
@@ -54,7 +54,7 @@ export default function UnsubscribeForm() {
   return (
     <div className="flex flex-col items-center gap-4">
       <h2>Souhaitez-vous vous désabonner de notre newsletter ?</h2>
-      {user && <Button onClick={() => unsubscribe()}>Se désinscrire</Button> }
+      {user && <Button onClick={() => unsubscribe()}>Se désinscrire</Button>}
     </div>
   );
 }

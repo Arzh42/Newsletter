@@ -3,6 +3,17 @@ import ContactForm from "@/pages/ContactForm";
 import Layout from "@/layouts/Layout.astro";
 
 import "../styles/globals.css";
+import { getAttributeDataBySlugText } from "@stoati/tools";
+import { initStoati } from "@stoati/tools";
+import { PUBLIC_STOATI_URL } from "astro:env/client";
+import { PUBLIC_STOATI_ID } from "astro:env/client";
+initStoati({
+  applicationId: PUBLIC_STOATI_ID,
+  apiUrl: PUBLIC_STOATI_URL,
+});
+const title = await getAttributeDataBySlugText(
+  "basic-site-configuration.site_config_title"
+);
 ---
 
 <script>
@@ -12,7 +23,11 @@ import "../styles/globals.css";
   ><main
     class="flex flex-col justify-center items-center flex-1 px-2 w-screen h-screen"
   >
-    <h1 class="text-xl font-semibold pb-4">Gazette de la Loupiotte</h1>
-    <ContactForm client:load />
+    <h1 class="text-xl font-semibold pb-4">{title}</h1>
+    <ContactForm
+      client:load
+      apiUrl={PUBLIC_STOATI_URL}
+      applicationId={PUBLIC_STOATI_ID}
+    />
   </main></Layout
 >
