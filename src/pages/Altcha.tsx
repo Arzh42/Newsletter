@@ -46,15 +46,12 @@ const Altcha = forwardRef<{ value: string | null }, AltchaProps>(
       }
     }, [onValueChange]);
 
-    /* Configure your `challengeurl` and remove the `test` attribute, see docs: https://altcha.org/docs/website-integration/#using-altcha-widget  */
     return (
       <altcha-widget
         ref={widgetRef}
         style={{
           "--altcha-max-width": "100%",
         }}
-        debug
-        test
         challengeurl={PUBLIC_STOATI_URL + "/challenges"}
       ></altcha-widget>
     );
